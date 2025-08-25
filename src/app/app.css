@@ -29,6 +29,11 @@
   border-radius: 4px;
   margin-top: 8px;
   min-height: 80px;
+  outline: none;
+}
+
+.tab-content:focus {
+  box-shadow: 0 0 0 3px #1976d2;
 }
 
 button[aria-label] {
@@ -66,10 +71,16 @@ button:focus {
 	box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 	transition: box-shadow 0.2s;
 	position: relative;
+	outline: none;
 }
 
 .tab-item.selected {
   box-shadow: 0 0 0 2px #1976d2;
+}
+
+.tab-item:focus {
+  box-shadow: 0 0 0 3px #1976d2;
+  z-index: 2;
 }
 
 .tab-label {

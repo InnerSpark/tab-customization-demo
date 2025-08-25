@@ -54,12 +54,34 @@ export class AppComponent {
     this.saveTabs(updated);
   }
 
+  drop(event: any) {
+    const arr = [...this.tabs()];
+    const [removed] = arr.splice(event.previousIndex, 1);
+    arr.splice(event.currentIndex, 0, removed);
+    this.tabs.set(arr);
+    this.saveTabs(arr);
+    // Focus the moved tab for correct tab order
+    setTimeout(() => {
+      const tabElements = document.querySelectorAll('.tab-item');
+      if (tabElements[event.currentIndex]) {
+        (tabElements[event.currentIndex] as HTMLElement).focus();
+      }
+    }, 0);
+  }
+
   moveTabLeft(index: number) {
     if (index > 0) {
       const arr = [...this.tabs()];
       [arr[index - 1], arr[index]] = [arr[index], arr[index - 1]];
       this.tabs.set(arr);
       this.saveTabs(arr);
+      // Focus the moved tab for correct tab order
+      setTimeout(() => {
+        const tabElements = document.querySelectorAll('.tab-item');
+        if (tabElements[index - 1]) {
+          (tabElements[index - 1] as HTMLElement).focus();
+        }
+      }, 0);
     }
   }
 
@@ -69,15 +91,14 @@ export class AppComponent {
       [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
       this.tabs.set(arr);
       this.saveTabs(arr);
+      // Focus the moved tab for correct tab order
+      setTimeout(() => {
+        const tabElements = document.querySelectorAll('.tab-item');
+        if (tabElements[index + 1]) {
+          (tabElements[index + 1] as HTMLElement).focus();
+        }
+      }, 0);
     }
-  }
-
-  drop(event: any) {
-    const arr = [...this.tabs()];
-    const [removed] = arr.splice(event.previousIndex, 1);
-    arr.splice(event.currentIndex, 0, removed);
-    this.tabs.set(arr);
-    this.saveTabs(arr);
   }
 
   async editTab(tab?: Tab) {

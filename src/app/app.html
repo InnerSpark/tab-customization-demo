@@ -1,12 +1,20 @@
 <div class="tab-bar" role="tablist" aria-label="Tab Navigation">
   <div cdkDropList [cdkDropListData]="tabs()" (cdkDropListDropped)="drop($event)" class="tab-list" cdkDropListOrientation="horizontal">
-    <div *ngFor="let tab of tabs(); let i = index" cdkDrag class="tab-item" [class.selected]="selectedTab() === tab.id" role="tab" [attr.aria-selected]="selectedTab() === tab.id">
-      <span class="tab-label" (click)="selectedTab.set(tab.id)">{{ tab.label }}</span>
-      <button mat-icon-button [matMenuTriggerFor]="tabMenu" aria-label="Tab options menu">
+    <div *ngFor="let tab of tabs(); let i = index" cdkDrag class="tab-item" [class.selected]="selectedTab() === tab.id" role="tab" tabindex="0"
+      [attr.aria-selected]="selectedTab() === tab.id"
+      (click)="selectedTab.set(tab.id)"
+      (keydown.ArrowLeft)="moveTabLeft(i); $event.preventDefault()"
+      (keydown.ArrowRight)="moveTabRight(i); $event.preventDefault()"
+      (keydown.Enter)="selectedTab.set(tab.id); $event.preventDefault()"
+      aria-label="Tab {{ tab.label }}">
+      <span class="tab-label">{{ tab.label }}</span>
+      <button mat-icon-button [matMenuTriggerFor]="tabMenu" aria-label="Tab options menu" tabindex="0"
+        (keydown.Enter)="$event.stopPropagation()"
+        (keydown.Space)="$event.stopPropagation()">
         <mat-icon>more_vert</mat-icon>
       </button>
     </div>
-    <button mat-raised-button color="primary" aria-label="Add tab" (click)="addTab()" class="tab-add-btn">Add Tab</button>
+    <button mat-raised-button color="primary" aria-label="Add tab" (click)="addTab()" class="tab-add-btn" tabindex="0">Add Tab</button>
   </div>
 
   <mat-menu #tabMenu="matMenu">
@@ -16,7 +24,7 @@
     <button mat-menu-item (click)="moveTabRight(getSelectedTabIndex())" [disabled]="getSelectedTabIndex() < 0 || getSelectedTabIndex() === tabs().length - 1">Move Right</button>
   </mat-menu>
 
-  <div class="tab-content" role="tabpanel" [attr.aria-labelledby]="'tab-' + selectedTab()">
+  <div class="tab-content" role="tabpanel" [attr.aria-labelledby]="'tab-' + selectedTab()" tabindex="0">
     {{ getSelectedTab()?.content || '' }}
   </div>
 </div>
