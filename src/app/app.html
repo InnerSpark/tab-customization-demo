@@ -186,8 +186,8 @@
     @for (tab of tabs(); let i = $index; track tab.label) {
       <div cdkDrag class="tab-item">
         <mat-icon class="tab-drag-handle">drag_indicator</mat-icon>
-        <button mat-button [class.active]="selectedTab() === i" (click)="selectedTab.set(i)">{{ tab.label }}</button>
-        <button mat-icon-button class="tab-menu-btn" [matMenuTriggerFor]="tabMenu" (click)="selectedTab.set(i)" style="margin-left: auto;">
+  <button mat-button [class.active]="selectedTab() === i" (click)="selectedTab.set(i)" (keydown)="onTabKeydown($event, i)">{{ tab.label }}</button>
+        <button mat-icon-button class="tab-menu-btn" [matMenuTriggerFor]="tabMenu" (click)="selectedTab.set(i)" style="margin-left: auto;" aria-label="Tab options menu">
           <mat-icon>more_vert</mat-icon>
         </button>
       </div>

@@ -61,4 +61,14 @@ export class App {
     prev.splice(event.currentIndex, 0, moved);
     this.tabs.set(prev);
   }
+
+  onTabKeydown(event: KeyboardEvent, index: number) {
+    if (event.key === 'ArrowLeft') {
+      this.moveTabLeft(index);
+      event.preventDefault();
+    } else if (event.key === 'ArrowRight') {
+      this.moveTabRight(index);
+      event.preventDefault();
+    }
+  }
 }

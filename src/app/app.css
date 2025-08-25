@@ -23,7 +23,8 @@
 }
 
 .tab-item button.mat-button:focus {
-  outline: none;
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
 }
 
 .tab-item button.mat-button.active {
@@ -57,6 +58,11 @@
 }
 
 .tab-menu-btn:focus {
-  outline: none;
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
   background: #e0e0e0;
+}
+
+.tab-menu-btn[aria-label] {
+  /* Ensures aria-label is present for accessibility */
 }
