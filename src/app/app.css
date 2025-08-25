@@ -1,0 +1,62 @@
+.tab-drop-list {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+	min-height: 40px;
+	align-items: center;
+}
+
+.tab-item {
+	display: flex;
+	align-items: center;
+	padding: 0 8px;
+	cursor: grab;
+	min-width: 80px;
+	margin-right: 4px;
+}
+
+.tab-item button.mat-button {
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin-right: 12px;
+  padding: 0 4px;
+}
+
+.tab-item button.mat-button:focus {
+  outline: none;
+}
+
+.tab-item button.mat-button.active {
+  border-bottom: 2px solid blue;
+}
+
+.tab-drag-handle {
+	margin-right: 4px;
+	color: #888;
+}
+
+.tab-drop-zone {
+	min-width: 40px;
+	min-height: 32px;
+	border: 2px dashed #888;
+	background: #e0e0e0;
+	margin-right: 4px;
+	display: inline-block;
+}
+
+.tab-menu-btn {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 4px;
+  transition: background 0.2s;
+}
+
+.tab-menu-btn:hover {
+  background: #f0f0f0;
+}
+
+.tab-menu-btn:focus {
+  outline: none;
+  background: #e0e0e0;
+}
